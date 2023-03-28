@@ -62,5 +62,17 @@ public class GameController : MonoBehaviour
   public void Menu()
   {
     SceneManager.LoadScene("Menu");
-  }  
+  }
+
+  public void Pause()
+  {
+    UIManager.Instance.ShowResume();
+    Time.timeScale = 0;
+  } 
+
+  public void Resume()
+  {
+    UIManager.Instance.ShowPause();
+    Time.timeScale = 1;
+  } 
 }

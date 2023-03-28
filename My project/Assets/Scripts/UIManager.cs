@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour
 {
   public TextMeshProUGUI scoreText;
   public TextMeshProUGUI scoreShowing;
+  public GameObject pause;
+  public GameObject resume;
   public GameObject gameOverPanel;
   public static UIManager Instance{get; private set;}
   private void Awake() 
@@ -24,6 +27,7 @@ public class UIManager : MonoBehaviour
   void Start()
   {
     scoreText.text = "0";
+    ShowPause();
   }
 
   // Update is called once per frame
@@ -41,6 +45,8 @@ public class UIManager : MonoBehaviour
   {
     scoreShowing.text = $"Score: {score}";
     gameOverPanel.SetActive(true);
+    pause.SetActive(false);
+    resume.SetActive(false);
   }
 
   public void SetScore()
@@ -48,5 +54,17 @@ public class UIManager : MonoBehaviour
     scoreText.text = "0";
     scoreShowing.text = "0";
     gameOverPanel.SetActive(false);
+  }
+
+  public void ShowPause()
+  {
+    pause.SetActive(true);
+    resume.SetActive(false);
+  }
+
+  public void ShowResume()
+  {
+    pause.SetActive(false);
+    resume.SetActive(true);
   }
 }
