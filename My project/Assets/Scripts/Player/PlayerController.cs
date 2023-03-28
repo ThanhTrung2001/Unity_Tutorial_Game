@@ -22,10 +22,13 @@ public class PlayerController : MonoBehaviour
   //Moving
   void Moving()
   {
-    Vector3 newPosition = transform.position;
-    newPosition.x += Input.GetAxis("Horizontal")*speed*Time.deltaTime;
-    newPosition.x = Mathf.Clamp(newPosition.x, -xLimit, xLimit); 
-    rb2d.MovePosition(newPosition);
+    if(GameController.Instance.checkGameOver() == false)
+    {
+      Vector3 newPosition = transform.position;
+      newPosition.x += Input.GetAxis("Horizontal")*speed*Time.deltaTime;
+      newPosition.x = Mathf.Clamp(newPosition.x, -xLimit, xLimit); 
+      rb2d.MovePosition(newPosition);
+    }
   }
 
   //Jumping

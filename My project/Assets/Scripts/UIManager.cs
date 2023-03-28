@@ -6,6 +6,8 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
   public TextMeshProUGUI scoreText;
+  public TextMeshProUGUI scoreShowing;
+  public GameObject gameOverPanel;
   public static UIManager Instance{get; private set;}
   private void Awake() 
   {
@@ -33,5 +35,18 @@ public class UIManager : MonoBehaviour
   public void UpdateScore(int score)
   {
     scoreText.text = score.ToString();
+  }
+
+  public void ShowOverPanel(int score)
+  {
+    scoreShowing.text = $"Score: {score}";
+    gameOverPanel.SetActive(true);
+  }
+
+  public void SetScore()
+  {
+    scoreText.text = "0";
+    scoreShowing.text = "0";
+    gameOverPanel.SetActive(false);
   }
 }

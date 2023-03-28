@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour
   {
     isGameOver = true;
     GameObject.Find("EnemySpawnController").GetComponent<EnemySpawnController>().StopSpawningEnemy();
+    UIManager.Instance.ShowOverPanel(score);
   }
 
   public void IncreaseScore()
@@ -35,8 +37,30 @@ public class GameController : MonoBehaviour
     }
   }
 
+  public bool checkGameOver()
+  {
+    if(isGameOver == false)
+    {
+      return false;
+    }
+    else 
+    {
+      return true;
+    }
+  }
+
   public void SetScore()
   {
     score = 0;
-  } 
+  }
+
+  public void Replay()
+  {
+    SceneManager.LoadScene("GamePlay");
+  }
+
+  public void Menu()
+  {
+    SceneManager.LoadScene("Menu");
+  }  
 }
